@@ -6,12 +6,18 @@ A modular, responsive React + Vite frontend for a privacy-first student wellbein
 
 ## Tech Stack
 
+### Framework & Build Tool
 - React 18
-- Vite 6
-- React Router DOM 6
+- Vite
+### Languages
+- JavaScript (ES6+)
+- JSX
+- CSS
+### Libraries
+- React Router DOM
 - Axios
 - Lucide React
-- CSS (responsive, dark-only UI)
+
 
 ## Run Locally
 

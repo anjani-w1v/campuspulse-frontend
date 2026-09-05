@@ -1,0 +1,11 @@
+import { Mic, Send, ShieldCheck, Sparkles, Volume2 } from "lucide-react";
+import { useState } from "react";
+import PageTitle from "../components/PageTitle";
+import ChatMessage from "../components/ChatMessage";
+
+export default function MannMitra() {
+  const [messages, setMessages] = useState([{ role: "assistant", text: "Hi. I'm MannMitra. You can tell me what's on your mind, in your own words." }]);
+  const [text, setText] = useState("");
+  const send = () => { if (!text.trim()) return; const next = text.trim(); setMessages(v => [...v, { role: "user", text: next }, { role: "assistant", text: "Thanks for sharing. In the connected backend, I can analyze the message, retrieve relevant support guidance and route a safe next step." }]); setText(""); };
+  return <><PageTitle eyebrow="MANNMITRA COMPANION" title="A space to talk, without judgement." subtitle="Frontend conversation shell. Connect this screen to the Python RAG, triage and speech APIs through src/services." /><div className="chat-layout"><div className="card chat-card"><div className="chat-head"><div className="feature-icon"><Sparkles /></div><div><b>MannMitra</b><span>Text + voice ready</span></div><span className="privacy-tag"><ShieldCheck size={10}/> PRIVATE BY DESIGN</span></div><div className="chat-messages">{messages.map((m, i) => <ChatMessage key={i} role={m.role} text={m.text} />)}</div><div className="chat-input"><button className="icon-btn" title="Voice input"><Mic size={17} /></button><input value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === "Enter" && send()} placeholder="Type what you're feeling..." /><button className="icon-btn" title="Text to speech"><Volume2 size={17} /></button><button className="btn btn-primary" onClick={send}><Send size={15} /></button></div></div><aside className="card companion-side"><span className="eyebrow">SAFETY PATHWAY</span><h2>What can connect here?</h2><ul><li>Emotion and risk signals</li><li>Green / Yellow / Red triage</li><li>RAG-grounded support content</li><li>Human counselor escalation</li><li>Voice fallback through speech services</li></ul><div className="secure-note"><ShieldCheck size={15}/> The frontend does not make clinical decisions. Backend safety logic and human review remain authoritative.</div></aside></div></>;
+}
